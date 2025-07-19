@@ -97,6 +97,27 @@ The server supports both production and sandbox environments:
 - **Sandbox**: `TRAININGPEAKS_ENVIRONMENT=sandbox`
 - **Production**: `TRAININGPEAKS_ENVIRONMENT=production`
 
+## Plug Claude
+
+Set the following in your claude configuration:
+
+```
+{
+  "mcpServers": {
+    "trainingpeaks": {
+      "command": "trainingpeaks-mcp-server",
+      "env": {
+        "TRAININGPEAKS_CLIENT_ID": "your_client_id_here",
+        "TRAININGPEAKS_CLIENT_SECRET": "your_client_secret_here",
+        "TRAININGPEAKS_ENVIRONMENT": "sandbox"
+      }
+    }
+  }
+}
+```
+
+See [claude_config_example.json](./claude_config_example.json).
+
 ## Development
 
 Install development dependencies:

@@ -10,7 +10,9 @@ from mcp.types import (
     InitializeResult,
     Tool,
     TextContent,
+    Implementation,
 )
+from mcp.server.lowlevel import NotificationOptions
 from .auth import TrainingPeaksAuth
 from .client import TrainingPeaksClient
 
@@ -164,7 +166,7 @@ class TrainingPeaksMCPServer:
             try:
                 if name == "get_athlete_profile":
                     result = await self.client.get_athlete_profile()
-                    
+
                 elif name == "get_workouts":
                     result = await self.client.get_workouts(
                         start_date=arguments.get("start_date"),
@@ -230,8 +232,12 @@ async def amain():
             write_stream,
             InitializeResult(
                 protocolVersion="2024-11-05",
+                serverInfo=Implementation(
+                    name="trainingpeaks-mcp-server",
+                    version="0.1.0"
+                ),
                 capabilities=mcp_server.server.get_capabilities(
-                    notification_options=None,
+                    notification_options=NotificationOptions(),
                     experimental_capabilities=None
                 )
             )

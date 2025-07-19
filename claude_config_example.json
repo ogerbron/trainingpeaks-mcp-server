@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "trainingpeaks": {
+      "command": "trainingpeaks-mcp-server",
+      "env": {
+        "TRAININGPEAKS_CLIENT_ID": "your_client_id_here",
+        "TRAININGPEAKS_CLIENT_SECRET": "your_client_secret_here",
+        "TRAININGPEAKS_ENVIRONMENT": "sandbox"
+      }
+    }
+  }
+}
