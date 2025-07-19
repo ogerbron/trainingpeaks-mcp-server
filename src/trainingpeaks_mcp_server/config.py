@@ -24,6 +24,11 @@ class TrainingPeaksConfig(BaseSettings):
     )
     environment: str = Field(default="sandbox", env="TRAININGPEAKS_ENVIRONMENT")
     
+    class Config:
+        env_file = ".env"
+        validate_assignment = True
+        extra = "ignore"
+    
     @property
     def api_base_url(self) -> str:
         """Get the appropriate API base URL based on environment."""
@@ -44,9 +49,6 @@ class TrainingPeaksConfig(BaseSettings):
     def validate_credentials(self) -> bool:
         """Check if required credentials are configured."""
         return bool(self.client_id and self.client_secret)
-    
-    class Config:
-        env_file = ".env"
 
 
 def get_config() -> TrainingPeaksConfig:

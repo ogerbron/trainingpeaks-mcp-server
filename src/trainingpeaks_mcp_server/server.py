@@ -220,14 +220,14 @@ class TrainingPeaksMCPServer:
                 )
 
 
-async def main():
-    """Main entry point for the TrainingPeaks MCP server."""
+async def amain():
+    """Async main entry point for the TrainingPeaks MCP server."""
     mcp_server = TrainingPeaksMCPServer()
     
     async with stdio_server() as (read_stream, write_stream):
         await mcp_server.server.run(
-            read_stream, 
-            write_stream, 
+            read_stream,
+            write_stream,
             InitializeResult(
                 protocolVersion="2024-11-05",
                 capabilities=mcp_server.server.get_capabilities(
@@ -238,5 +238,10 @@ async def main():
         )
 
 
+def main():
+    """Main entry point for the TrainingPeaks MCP server."""
+    asyncio.run(amain())
+
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
